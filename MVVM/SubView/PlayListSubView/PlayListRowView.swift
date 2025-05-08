@@ -12,34 +12,29 @@ struct PlayListRowView: View {
     var vm: AllSongsViewModel
     
     var body: some View {
-        Button {
-            
-        } label: {
-            Rectangle()
-                .frame(width: UIScreen.main.bounds.width - 10, height: 65)
-                .background(.ultraThinMaterial)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .overlay{
-                    HStack {
-                        Image("favPlaylist")
-                        
-                        VStack(alignment: .leading) {
-                            Text("Favorites")
-                                .font(.title)
-                                .foregroundStyle(.white)
-                                .fontDesign(.rounded)
-                            Text("Songs: \(vm.favoriteSongs.count)")
-                                .font(.headline)
-                                .foregroundStyle(.white)
-                                .fontDesign(.rounded)
-                        }
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                }
-            
-        }
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.white.opacity(0.3), lineWidth: 0.5)
+                
+            HStack {
+                Image(systemName: "heart.fill")
+                    .foregroundStyle(.red.gradient)
+                    .font(.system(size: 33))
 
+                VStack(alignment: .leading) {
+                    Text("Favorites")
+                        .foregroundStyle(.black)
+                    Text("Tracks: \(vm.favoriteSongs.count)")
+                        .font(.caption)
+                        .foregroundStyle(.black)
+                }
+                Spacer()
+            }
+            .padding()
+        }
+        .frame(height: 70)
+        .background(.ultraThinMaterial)
+        .cornerRadius(12)
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SongRowView: View {
     
-    var vm: AllSongsViewModel
+    @Bindable var vm: AllSongsViewModel
     var songURL: URL
     var trackName: String?
     var artistName: String?
@@ -20,50 +20,53 @@ struct SongRowView: View {
     @State private var animateHeart = false
     
     var body: some View {
-        Rectangle()
-            .frame(width: UIScreen.main.bounds.width - 10, height: 65)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
-            .overlay{
-                HStack(spacing: 15) {
-                    Button {
-                        vm.play(url: songURL)
-                    } label: {
-                        Image(systemName: isPlaying ? "pause.fill" : "play.fill")
-                            .resizable()
-                            .frame(width: 25, height: 25)
-                            .foregroundStyle(.white)
-                    }
-                    VStack(alignment: .leading) {
-                        Text(trackName ?? "unknown" )
-                            .font(.title)
-                            .foregroundStyle(.white)
-                            .fontDesign(.rounded)
-                        Text(artistName ?? "unknown")
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .fontDesign(.rounded)
-                    }
-                    
-                    Spacer()
-                    
-                    Button {
-                        vm.toggleFavorite(song: SongInfo)
-                        vm.haptic()
-                        withAnimation(.easeInOut(duration: 0.3)) {
-                            animateHeart.toggle()
-                        }
-                    } label: {
-                        Image(systemName: isFav ? "heart.fill" : "heart")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundStyle( isFav ? .red : .white)
+
+            HStack(spacing: 15) {
+                Button {
+                    vm.play(url: songURL)
+                } label: {
+                    Image(systemName: isPlaying ? "pause.fill" : "play.fill")
+                        .resizable()
+                        .frame(width: 28, height: 28)
+                        .foregroundStyle(.white)
                 }
+                .buttonStyle(.plain)
+                
+                VStack(alignment: .leading) {
+                    Text(trackName ?? "unknown" )
+                        //.font(.title)
+                        .lineLimit(1)
+                        .font(.system(size: 18))
+                        .foregroundStyle(.white)
+                        .fontDesign(.rounded)
+                    Text(artistName ?? "unknown")
+                        //.font(.headline)
+                        .lineLimit(1)
+                        .font(.system(size: 13))
+                        .foregroundStyle(.white)
+                        .fontDesign(.rounded)
+                }
+                
+                Spacer()
+                
+                Button {
+                    vm.toggleFavorite(song: SongInfo)
+                    vm.haptic()
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        animateHeart.toggle()
+                    }
+                } label: {
+                    Image(systemName: isFav ? "heart.fill" : "heart")
+                        .resizable()
+                        .frame(width: 15, height: 15)
+                        .foregroundStyle( isFav ? .red : .white)
+                }
+                .buttonStyle(.plain)
             }
-                .padding()
+            .padding(.horizontal)
         }
     }
-}
+
 
 //#Preview {
 //    SwiftUIView(vm: AllSongsViewModel())

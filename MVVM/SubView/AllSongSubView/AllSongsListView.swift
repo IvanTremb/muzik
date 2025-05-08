@@ -12,7 +12,7 @@ struct AllSongsListView: View {
     @Bindable var vm: AllSongsViewModel
     
     var body: some View {
-        ScrollView {
+        List {
             ForEach(vm.allSongs) { song in
                 SongRowView(vm: vm,
                             songURL: song.url,
@@ -21,6 +21,8 @@ struct AllSongsListView: View {
                             isPlaying: vm.isCurrentlyPlaying(song),
                             isFav: song.isFav,
                             SongInfo: song)
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
             }
             .padding(.horizontal)
             .onAppear{
@@ -29,6 +31,9 @@ struct AllSongsListView: View {
 //                vm.loadFavorites()
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(.clear)
+        .listStyle(.plain)
     }
 }
 
