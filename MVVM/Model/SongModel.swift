@@ -53,3 +53,5 @@ struct SongInfo: Identifiable, Codable {
         self.isFav = isFav
     }
 }
+
+

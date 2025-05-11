@@ -28,13 +28,28 @@ struct PlayListsView: View {
                     VStack {
                         PlayListRowView(vm: vm)
                         List {
-                            Text("Favorutes")
+                            ForEach(allPlayLists) { list in
+                                UsersPlayList(playListName: list.name,
+                                              listOfSongs: list.songs)
+                            }
+                            
                         }
                         .scrollContentBackground(.hidden)
                         .background(.clear)
                         .listStyle(.plain)
                         .navigationTitle("Playlists")
                         .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            Button {
+                                
+                            } label: {
+                                Text("Add")
+                                    .foregroundStyle(.black)
+                                Image(systemName: "folder.badge.plus")
+                                    .font(.system(size: 15))
+                                    .foregroundStyle(.black)
+                            }
+                        }
                     }
                 }
             }

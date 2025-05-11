@@ -1,15 +1,17 @@
 //
-//  PlayListRowView.swift
+//  UsersPlayList.swift
 //  Muzik
 //
-//  Created by Ivan Trembaci on 07.05.2025.
+//  Created by Ivan Trembaci on 11.05.2025.
 //
 
 import SwiftUI
 
-struct PlayListRowView: View {
+struct UsersPlayList: View {
     
-    var vm: AllSongsViewModel
+    //@Bindable var vm: AllSongsViewModel
+    var playListName: String
+    var listOfSongs: [SongInfo]
     
     var body: some View {
         ZStack {
@@ -22,9 +24,9 @@ struct PlayListRowView: View {
                     .font(.system(size: 33))
 
                 VStack(alignment: .leading) {
-                    Text("Favorites")
+                    Text("\(playListName)")
                         .foregroundStyle(.black)
-                    Text("Tracks: \(vm.favoriteSongs.count)")
+                    Text("\(listOfSongs.count)")
                         .font(.caption)
                         .foregroundStyle(.black)
                 }
@@ -35,9 +37,10 @@ struct PlayListRowView: View {
         .frame(height: 70)
         .background(.clear)
         .cornerRadius(12)
+
     }
 }
 
-#Preview {
-    PlayListRowView(vm: AllSongsViewModel())
-}
+//#Preview {
+//    UsersPlayList(listInfo: vm.playListsDict)
+//}

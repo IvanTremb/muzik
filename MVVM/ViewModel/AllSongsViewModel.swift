@@ -25,6 +25,8 @@ class AllSongsViewModel {
     var favoriteSongs: [SongInfo] {
         allSongs.filter { $0.isFav }
     }
+    //var playListsDict: [String : [SongInfo]?] = [:]
+    //var playListsDict = ["My List" : [sampleSongInfo]]
     
     var currentPlayingSong: SongInfo? = nil
     var isPlaying = false

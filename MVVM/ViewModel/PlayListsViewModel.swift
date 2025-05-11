@@ -12,7 +12,13 @@ import Foundation
 class PlayListsViewModel {
     init(){}
     
-    var favPlayList = [SongInfo]()
-    
+    func addPlayList(name: String) {
+        var tempName = name
+        
+        if tempName.isEmpty {
+            tempName = "New Playlist"
+        }
+        allPlayLists.append(Playlist(name: tempName))
+    }
     
 }
