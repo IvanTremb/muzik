@@ -9,7 +9,8 @@ import SwiftUI
 
 struct UsersPlayList: View {
     
-    //@Bindable var vm: AllSongsViewModel
+    //@Bindable var vm = PlayListsViewModel()
+    
     var playListName: String
     var listOfSongs: [SongInfo]
     
@@ -19,14 +20,14 @@ struct UsersPlayList: View {
                 .stroke(Color.white.opacity(0.3), lineWidth: 0.5)
                 
             HStack {
-                Image(systemName: "heart.fill")
+                Image(systemName: "music.note")
                     .foregroundStyle(.red.gradient)
                     .font(.system(size: 33))
 
                 VStack(alignment: .leading) {
                     Text("\(playListName)")
                         .foregroundStyle(.black)
-                    Text("\(listOfSongs.count)")
+                    Text("Tracks: \(listOfSongs.count)")
                         .font(.caption)
                         .foregroundStyle(.black)
                 }
@@ -35,7 +36,7 @@ struct UsersPlayList: View {
             .padding()
         }
         .frame(height: 70)
-        .background(.clear)
+        .background(.ultraThinMaterial)
         .cornerRadius(12)
 
     }

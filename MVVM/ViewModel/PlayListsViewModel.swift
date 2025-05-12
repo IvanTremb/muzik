@@ -12,6 +12,8 @@ import Foundation
 class PlayListsViewModel {
     init(){}
     
+    var allPlayLists = [Playlist]()
+    
     func addPlayList(name: String) {
         var tempName = name
         

@@ -15,7 +15,7 @@ struct Playlist: Identifiable, Codable {
     var songs = [SongInfo]()
 }
 
-var allPlayLists = [Playlist]()
+//var allPlayLists = [Playlist]()
 
 //let songinfoplaylist = SongInfo(url: URL(string: "https://example.com/audio.mp3")!, metadata: SongMetadata(title: "qwe", artist: "asd", artwork: nil, duration: 25.9), isFav: true)
 

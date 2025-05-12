@@ -10,6 +10,8 @@ import SwiftUI
 struct PlayListsView: View {
     
     var vm: AllSongsViewModel
+    @Bindable var PlayListsVM = PlayListsViewModel()
+    @State private var addPlatList = false
     
     var body: some View {
             NavigationStack {
@@ -28,10 +30,12 @@ struct PlayListsView: View {
                     VStack {
                         PlayListRowView(vm: vm)
                         List {
-                            ForEach(allPlayLists) { list in
+                            ForEach(PlayListsVM.allPlayLists) { list in
                                 UsersPlayList(playListName: list.name,
                                               listOfSongs: list.songs)
                             }
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                             
                         }
                         .scrollContentBackground(.hidden)
@@ -41,7 +45,7 @@ struct PlayListsView: View {
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             Button {
-                                
+                                addPlatList.toggle()
                             } label: {
                                 Text("Add")
                                     .foregroundStyle(.black)
@@ -49,6 +53,10 @@ struct PlayListsView: View {
                                     .font(.system(size: 15))
                                     .foregroundStyle(.black)
                             }
+                        }
+                        .sheet(isPresented: $addPlatList) {
+                            CreatePlayListView(vm: PlayListsVM, playListName: "")
+                                .presentationDetents([.medium])
                         }
                     }
                 }
