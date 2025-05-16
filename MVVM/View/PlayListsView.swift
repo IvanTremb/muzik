@@ -10,7 +10,7 @@ import SwiftUI
 struct PlayListsView: View {
     
     var vm: AllSongsViewModel
-    @Bindable var PlayListsVM = PlayListsViewModel()
+    @Bindable var PlayListsVM: PlayListsViewModel
     @State private var addPlatList = false
     
     var body: some View {
@@ -66,5 +66,5 @@ struct PlayListsView: View {
 
 
 #Preview {
-    PlayListsView(vm: AllSongsViewModel())
+    PlayListsView(vm: AllSongsViewModel(), PlayListsVM: PlayListsViewModel())
 }

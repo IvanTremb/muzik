@@ -9,14 +9,14 @@ import SwiftUI
 
 struct MainView: View {
     @Bindable var vm: AllSongsViewModel
-    
+    @Bindable var PlayListsVM: PlayListsViewModel
     var body: some View {
         TabView {
             Tab("All", systemImage: "music.note") {
-                AllSongsView(vm: vm)
+                AllSongsView(vm: vm, PlayListsVM: PlayListsVM)
             }
             Tab("PlayLists", systemImage: "music.note.list") {
-                PlayListsView(vm: vm)
+                PlayListsView(vm: vm, PlayListsVM: PlayListsVM)
             }
         }
     }
@@ -24,5 +24,5 @@ struct MainView: View {
 
 
 #Preview {
-    MainView(vm: AllSongsViewModel())
+    MainView(vm: AllSongsViewModel(), PlayListsVM: PlayListsViewModel())
 }

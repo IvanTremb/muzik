@@ -10,9 +10,10 @@ import SwiftUI
 @main
 struct MuzikApp: App {
     @Bindable var vm = AllSongsViewModel()
+    @Bindable var PlayListsVM = PlayListsViewModel()
     var body: some Scene {
         WindowGroup {
-            MainView(vm: vm)
+            MainView(vm: vm, PlayListsVM: PlayListsVM)
                 .preferredColorScheme(.dark)
         }
     }

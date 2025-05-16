@@ -11,6 +11,8 @@ import AVFoundation
 struct AllSongsView: View {
     
     @Bindable var vm: AllSongsViewModel
+    @Bindable var PlayListsVM: PlayListsViewModel
+    @State var selection = Set<UUID>()
     
     var body: some View {
         
@@ -30,7 +32,7 @@ struct AllSongsView: View {
                     )
                     .ignoresSafeArea()
                     
-                List {
+                    List(selection: $selection) {
                     ForEach(vm.allSongs) { song in
                         SongRowView(vm: vm,
                                     songURL: song.url,
@@ -50,7 +52,16 @@ struct AllSongsView: View {
                 .navigationTitle("All Songs")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    AddSongButton(vm: vm)
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        AddSongButton(vm: vm)
+                    }
+                    
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        //AddToPlaylist()
+                        EditButton()
+                            
+                    }
                 }
             }
         }
@@ -58,6 +69,6 @@ struct AllSongsView: View {
 }
 
 #Preview {
-    AllSongsView(vm: AllSongsViewModel())
+    AllSongsView(vm: AllSongsViewModel(),PlayListsVM: PlayListsViewModel())
         .preferredColorScheme(.dark)
 }

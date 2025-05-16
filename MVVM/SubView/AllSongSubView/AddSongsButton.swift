@@ -17,6 +17,7 @@ struct AddSongButton: View {
             vm.fileImporterIsPresented.toggle()
         } label: {
             Image(systemName: "plus.circle")
+                .foregroundStyle(.black)
         }
         .fileImporter(
             isPresented: $vm.fileImporterIsPresented,

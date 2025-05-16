@@ -23,4 +23,9 @@ class PlayListsViewModel {
         allPlayLists.append(Playlist(name: tempName))
     }
     
+    
+    func addSongsToPlaylist(_ songs: [SongInfo], to playlist: Playlist) {
+        guard let index = allPlayLists.firstIndex(where: { $0.id == playlist.id }) else { return }
+        allPlayLists[index].songs.append(contentsOf: songs)
+    }
 }
